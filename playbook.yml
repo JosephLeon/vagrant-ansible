@@ -4,9 +4,9 @@
   tasks:
     - name: update apt cache
       apt: update_cache=yes
+    - include: tasks/apache.yml
     - name: install lamp stack programs
       apt: name={{item}} state=present
       with_items:
-        - apache2
         - mysql-server
         - php5
