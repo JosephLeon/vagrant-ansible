@@ -3,6 +3,7 @@
   sudo: true
   vars:
     document_root: /vagrant
+
   tasks:
     - name: update apt cache
       apt: update_cache=yes
@@ -12,3 +13,7 @@
       with_items:
         - mysql-server
         - php5
+
+  handlers:
+    - name: reload apache
+      service: name=apache2 state=reloaded
