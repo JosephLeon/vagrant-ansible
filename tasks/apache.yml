@@ -1,3 +1,7 @@
 ---
 - name: install apache
   apt: name=apache2 state=present
+- name: Copy across new virtual host
+  template:
+    src=virtual-hosts.conf.j2
+    dest=/etc/apache2/sites-available/vagrant.conf
