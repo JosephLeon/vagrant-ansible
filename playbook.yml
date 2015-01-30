@@ -9,11 +9,11 @@
       apt: update_cache=yes
 
     # Include webserver tasks.
-    - include: roles/webserver/tasks/apache.yml
-    - include: roles/webserver/tasks/php5.yml
+    # - include: roles/webserver/tasks/apache.yml
+    # - include: roles/webserver/tasks/php5.yml
 
     # Include database tasks.
-    - include: roles/database/tasks/mysql.yml
+    # - include: roles/database/tasks/mysql.yml
 
     # Old Loop code for mysql and php5
     # - name: install lamp stack programs
