@@ -7,12 +7,20 @@
   tasks:
     - name: update apt cache
       apt: update_cache=yes
-    - include: tasks/apache.yml
-    - name: install lamp stack programs
-      apt: name={{item}} state=present
-      with_items:
-        - mysql-server
-        - php5
+
+    # Include webserver tasks.
+    - include: roles/webserver/tasks/apache.yml
+    - include: roles/webserver/tasks/php5.yml
+
+    # Include database tasks.
+    - include: roles/database/tasks/mysql.yml
+
+    # Old Loop code for mysql and php5
+    # - name: install lamp stack programs
+    #   apt: name={{item}} state=present
+    #   with_items:
+    #     - mysql-server
+    #     - php5
 
   handlers:
     - name: reload apache
