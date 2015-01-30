@@ -4,9 +4,18 @@
   vars:
     document_root: /vagrant
 
-  tasks:
+  pre_tasks:
     - name: update apt cache
       apt: update_cache=yes
+
+  handlers:
+    - name: reload apache
+      service: name=apache2 state=reloaded
+
+  roles:
+    - webserver
+    - database
+
 
     # Include webserver tasks.
     # - include: roles/webserver/tasks/apache.yml
@@ -21,11 +30,3 @@
     #   with_items:
     #     - mysql-server
     #     - php5
-
-  handlers:
-    - name: reload apache
-      service: name=apache2 state=reloaded
-
-  roles:
-    - webserver
-    - database
